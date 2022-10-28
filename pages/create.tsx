@@ -1,10 +1,13 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Pay.module.css';
+import styles from '../styles/create.module.css';
 import { TextInput, NumberInput, Button, Input } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconAlertTriangle } from '@tabler/icons';
+import { IconUpload, IconPhoto, IconX } from '@tabler/icons';
+import Dropzone from 'react-dropzone-uploader';
+import 'react-dropzone-uploader/dist/styles.css'
 import {
   createStyles,
   Menu,
@@ -17,92 +20,40 @@ import {
 
 const Generator: NextPage = () => {
 
-    const useStyles = createStyles((theme) => ({
-        invalid: {
-          backgroundColor:
-            theme.colorScheme === 'dark' ? theme.fn.rgba(theme.colors.red[8], 0.15) : theme.colors.red[0],
-        },
-      
-        icon: {
-          color: theme.colors.red[theme.colorScheme === 'dark' ? 7 : 6],
-        },
-
-        label:{
-            color: "white"
-        }
-      }));
-      
-      const { classes } = useStyles();
-
-      const form = useForm({
-        initialValues: {
-          email: '',
-          walletAddress: '',
-          crypto: '',
-          amount: 0
-        },
+  const getUploadParams = (meta:any) => { return { url: '/api/create' } }
+  
+  // called every time a file's `status` changes
+  const handleChangeStatus = ( {meta, file}, status:any) => { console.log(status, meta, file) }
+  
+  // receives array of files that are done uploading when submit button is clicked
+  const handleSubmit = (files:any, allFiles:any) => {
     
-        validate: {
-          email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-        },
-      });
+    console.log(files.map((f:any) => f.meta));
 
-      async function handleOnSubmit(e:any) {
-        e.preventDefault();
+    allFiles.forEach((f:any) => f.remove());
 
-        // form.validate();
-        // form.isValid();
-
-        const formData : any[] = [];
-        Array.from(e.currentTarget.elements).forEach((field:any) => {
-            if(!field.name){
-                return;
-            }else{
-                formData[field.name] = field.value;
-            }
-        });
-        
-        formData.forEach((data) => {
-            console.log(data)
-        })
-    }
-
+  }
 
   return (
     <div className={styles.container}>
       
         <main className={styles.main}>
             <h1>Music NFT Generator</h1>
-            <form onSubmit={handleOnSubmit}>
-                <TextInput
-                        label="E-mail Address for Receipt"
-                        error="Invalid email"
-                        defaultValue="hello@gmail.com"
-                        classNames={{ input: classes.invalid, label: classes.label }}
-                        rightSection={<IconAlertTriangle stroke={1.5} size={16} className={classes.icon} />}
-                        />
-                <TextInput
-                    label="Receipient Wallet Address"
-                    error="Invalid wallet address"
-                    defaultValue=""
-                    classNames={{ input: classes.invalid, label: classes.label }}
-                    rightSection={<IconAlertTriangle stroke={1.5} size={16} className={classes.icon} />}
-                    />
-                <TextInput
-                    label="Crypto"
-                    error=""
-                    defaultValue="$SOL"
-                    classNames={{ input: classes.invalid, label: classes.label }}
-                    rightSection={<IconAlertTriangle stroke={1.5} size={16} className={classes.icon} />}
-                    />
-                <NumberInput
-                    label="Amount in USD"
-                    error=""
-                    classNames={{ input: classes.invalid, label: classes.label }}
-                    rightSection={<IconAlertTriangle stroke={1.5} size={16} className={classes.icon} />}
-                    />
-                <Input className={styles.send} type="submit"></Input>
-            </form>
+            <p>Upload Files</p>
+            <div className={styles.dropzone}>
+              <Dropzone
+                getUploadParams={getUploadParams}
+                onChangeStatus={handleChangeStatus}
+                onSubmit={handleSubmit}
+                accept="image/*,audio/*,video/*, vnd/*, gif/*"
+                multiple={true}
+              />
+            </div>
+            <div className={styles.instructionsGroup}>
+              <p className={styles.instructions}>Please upload stems in folders grouped and named by category/instrument.</p>
+              <p className={styles.instructions}>We only accept stems in the same key and same tempo, for right now.</p>
+              <p className={styles.instructions}>Upload an image file to be associated to your loops...</p>
+            </div>
         </main>
 
      

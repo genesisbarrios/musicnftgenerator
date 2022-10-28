@@ -1,9 +1,15 @@
+
+@font-face {
+  font-family: "8bit";   /*Can be any text*/
+  src: local("8bit"),
+    url("./fonts/8bit.TTF") format("truetype");
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "8bit", "Verdana", "sans-serif";
 }
 
 a {
