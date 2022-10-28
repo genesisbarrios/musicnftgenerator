@@ -102,29 +102,32 @@ export default function Layout({ children }: LayoutProps) {
     const { classes } = useStyles();
   const [opened, { toggle }] = useDisclosure(false);
   const items = links.map((link) => {
-    const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.link}>{item.label}</Menu.Item>
-    ));
+    
+    // const menuItems = link.links?.map((item) => (
+    //   <Menu.Item key={item.link}>{item.label}</Menu.Item>
+    // )
+    
+    // );
 
-    if (menuItems) {
-      return (
-        <Menu key={link.label} trigger="hover" exitTransitionDuration={0}>
-          <Menu.Target>
-            <Link
-              href={link.link}
-              className={classes.link}
-              onClick={(event) => {}}
-            >
-              <Center>
-                <span className={classes.linkLabel}>{link.label}</span>
-                <IconChevronDown size={12} stroke={1.5} />
-              </Center>
-            </Link>
-          </Menu.Target>
-          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
-        </Menu>
-      );
-    }
+    // if (menuItems) {
+    //   return (
+    //     <Menu key={link.label} trigger="hover" exitTransitionDuration={0}>
+    //       <Menu.Target>
+    //         <Link
+    //           href={link.link}
+    //           className={classes.link}
+    //           onClick={(event) => {}}
+    //         >
+    //           <Center>
+    //             <span className={classes.linkLabel}>{link.label}</span>
+    //             <IconChevronDown size={12} stroke={1.5} />
+    //           </Center>
+    //         </Link>
+    //       </Menu.Target>
+    //       <Menu.Dropdown>{menuItems}</Menu.Dropdown>
+    //     </Menu>
+    //   );
+    // }
 
     return (
       <a
