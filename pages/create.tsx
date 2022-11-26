@@ -20,10 +20,10 @@ import {
 
 const Generator: NextPage = () => {
 
-  const getUploadParams = (meta:any) => { return { url: '/api/create' } }
+  // const getUploadParams = (meta:any) => { return { url: '/api/create' } }
   
-  // called every time a file's `status` changes
-  const handleChangeStatus = ( {meta, file}, status:any) => { console.log(status, meta, file) }
+  // // called every time a file's `status` changes
+  // const handleChangeStatus = ( {meta, file}, status:any) => { console.log(status, meta, file) }
   
   // receives array of files that are done uploading when submit button is clicked
   const handleSubmit = (files:any, allFiles:any) => {
@@ -41,13 +41,13 @@ const Generator: NextPage = () => {
             <h1>Music NFT Generator</h1>
             <p>Upload Files</p>
             <div className={styles.dropzone}>
-              <Dropzone
+              {/* <Dropzone
                 getUploadParams={getUploadParams}
                 onChangeStatus={handleChangeStatus}
                 onSubmit={handleSubmit}
                 accept="image/*,audio/*,video/*, vnd/*, gif/*"
                 multiple={true}
-              />
+              /> */}
             </div>
             <div className={styles.instructionsGroup}>
               <p className={styles.instructions}>Please upload stems in folders grouped and named by category/instrument.</p>
