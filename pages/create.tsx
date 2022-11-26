@@ -6,7 +6,6 @@ import { TextInput, NumberInput, Button, Input } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconAlertTriangle } from '@tabler/icons';
 import { IconUpload, IconPhoto, IconX } from '@tabler/icons';
-import Dropzone from 'react-dropzone-uploader';
 import 'react-dropzone-uploader/dist/styles.css'
 import {
   createStyles,
@@ -41,13 +40,6 @@ const Generator: NextPage = () => {
             <h1>Music NFT Generator</h1>
             <p>Upload Files</p>
             <div className={styles.dropzone}>
-              {/* <Dropzone
-                getUploadParams={getUploadParams}
-                onChangeStatus={handleChangeStatus}
-                onSubmit={handleSubmit}
-                accept="image/*,audio/*,video/*, vnd/*, gif/*"
-                multiple={true}
-              /> */}
             </div>
             <div className={styles.instructionsGroup}>
               <p className={styles.instructions}>Please upload stems in folders grouped and named by category/instrument.</p>
