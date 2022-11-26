@@ -95,7 +95,7 @@ type LayoutProps = {
     links: { link: string; label: string; links: { link: string; label: string }[] }[];
   }
 
-  const links = [{ link: "http://www.tunesy.com/#About", label: "About", links:null}, {link:"http://www.tunesy.com/#", label:"Create" , links:null}, {link:"http://www.tunesy.com/#footer", label:"Contact Us", links:null}];
+  const links = [{ link: "/#About", label: "About", links:null}, {link:"/#", label:"Create" , links:null}, {link:"/#footer", label:"Contact Us", links:null}];
 
 export default function Layout({ children }: LayoutProps) {
 
@@ -134,7 +134,6 @@ export default function Layout({ children }: LayoutProps) {
         key={link.label}
         href={link.link}
         className={classes.link}
-        onClick={(event) => {}}
       >
         {link.label}
       </a>
