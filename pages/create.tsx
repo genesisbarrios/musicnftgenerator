@@ -6,7 +6,6 @@ import { TextInput, NumberInput, Button, Input } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconAlertTriangle } from '@tabler/icons';
 import { IconUpload, IconPhoto, IconX } from '@tabler/icons';
-import 'react-dropzone-uploader/dist/styles.css'
 import {
   createStyles,
   Menu,
